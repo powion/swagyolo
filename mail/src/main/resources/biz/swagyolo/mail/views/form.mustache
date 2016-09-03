@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- CSS -->
+<style>
+
+html, body {
+  margin: 0;
+  padding: 0
+}
+
+header {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  position: relative;
+}
+
+#headerBar {
+  height: 100px;
+  background: #8c1aff;
+}
+
+#contentWrapper {
+  width: 70%;
+  background: #fff;
+  margin: 0 auto;
+  text-align: center;
+}
+
+text {
+  font: 10px sans-serif;
+}
+
+</style>
+
+<!-- HTML -->
+<div id="headerBar"></div>
+
+<div id="contentWrapper">
+  <header>
+    <h1> SwagYolo Email Service </h1>
+  </header>
+  <br>
+  <form name="input">
+    Desired SwagYolo email address:<br>
+    <input type="text" name="swagMail">@swagyolo.biz<br><br>
+    Redirect email (e.g. your gmail):<br>
+    <input type="text" name="normieMail">
+    <br>
+    <input type="button" onclick="createSwagMail()" value="Get your email!">
+  </form>
+  <br>
+  <div id="output"> </div>
+</div>
+
+<!-- JS -->
+<script>
+
+function createSwagMail() {
+  var swagMail = document.forms["input"]["swagMail"].value;
+  var normieMail = document.forms["input"]["normieMail"].value;
+
+  var xhr = new XMLHttpRequest();
+  var url = "./create";
+  var data = {"swagMail":swagMail, "normieMail":normieMail};
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+  xhr.send(JSON.stringify(data));
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+        var response = xhr.response;
+        document.getElementById("output").innerHTML = xhr.responseText;
+    }
+  };
+}
+
+</script>
