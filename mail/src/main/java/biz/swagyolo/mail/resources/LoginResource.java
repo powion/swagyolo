@@ -1,5 +1,6 @@
 package biz.swagyolo.mail.resources;
 
+import biz.swagyolo.mail.db.CrewDAO;
 import biz.swagyolo.mail.views.LoginView;
 
 import javax.ws.rs.GET;
@@ -10,7 +11,10 @@ import javax.ws.rs.core.MediaType;
 @Path("/login")
 public class LoginResource {
 
-    public LoginResource() {
+    private CrewDAO crewDAO;
+
+    public LoginResource(CrewDAO crewDAO) {
+        this.crewDAO = crewDAO;
     }
 
     @GET

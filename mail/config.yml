@@ -1,3 +1,12 @@
+# Database settings.
+database:
+
+# access by docker
+  driverClass: org.postgresql.Driver
+  user: postgres
+  password: ${POSTGRES_PASSWORD}
+  url: jdbc:postgresql://172.17.0.2:5432/swag
+
 logging:
   level: INFO
   loggers:
